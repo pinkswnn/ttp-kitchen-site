@@ -1,577 +1,935 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>TTP Kitchen | Chef CP</title>
-	<meta name="description" content="Southern Soul. Classic Comfort. Fine Dining Finesse. Private chef + catering in DFW." />
-	<link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TTP Kitchen | Chef CP</title>
+  <meta name="description" content="TTP Kitchen (Trust The Process). Where Fine Dining Becomes A Lifestyle. Chef CP in DFW." />
 
-	<!-- LocalBusiness Schema -->
-	<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "TTP Kitchen",
-  "description": "Southern soul. Classic comfort. Fine dining finesse. Private chef and catering in DFW.",
-  "telephone": "+1-469-885-7589",
-  "email": "info@ttpkitchen.com",
-  "url": "https://ttpkitchen.com",
-  "sameAs": [
-    "https://www.instagram.com/ttp_kitchen"
-  ],
-  "areaServed": "Dallas–Fort Worth",
-  "priceRange": "$$"
-}
-	</script>
+  <!-- Open Graph -->
+  <meta property="og:title" content="TTP Kitchen | Chef CP" />
+  <meta property="og:description" content="Where Fine Dining Becomes A Lifestyle." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="chef-portrait.jpg" />
+
+  <!-- ===== LocalBusiness Schema ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "TTP Kitchen",
+    "description": "TTP Kitchen (Trust The Process). Where fine dining becomes a lifestyle. Chef CP.",
+    "telephone": "+1-469-885-7589",
+    "email": "info@ttpkitchen.com",
+    "url": "https://ttpkitchen.com",
+    "sameAs": ["https://www.instagram.com/ttp_kitchen"],
+    "areaServed": "Dallas–Fort Worth",
+    "priceRange": "$$",
+    "image": ["chef-portrait.jpg","chefplating.JPG","logo-ttp.png"]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#000;
+      --ink:#fff;
+      --muted:rgba(255,255,255,.74);
+      --muted2:rgba(255,255,255,.58);
+      --line:rgba(255,255,255,.12);
+      --gold:#D4AF37;
+      --gold2:#F5D76E;
+      --r:18px;
+      --r2:26px;
+      --max:1120px;
+      --shadow: 0 18px 56px rgba(0,0,0,.58);
+      --shadow2: 0 10px 32px rgba(0,0,0,.48);
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --ease2: cubic-bezier(.16,1,.3,1);
+    }
+
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      color:var(--ink);
+      background:
+        radial-gradient(860px 560px at 16% 0%, rgba(212,175,55,.11), transparent 62%),
+        radial-gradient(980px 560px at 92% 10%, rgba(245,215,110,.06), transparent 64%),
+        var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      overflow-x:hidden;
+    }
+    a{ color:inherit; }
+    img{ display:block; max-width:100%; }
+
+    /* Ambient FX (premium, not “futuristic”) */
+    .fx{ position:fixed; inset:0; pointer-events:none; z-index:0; }
+    .fx-grain{
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='420' height='420' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      opacity:.22;
+    }
+    .fx-vignette{
+      background: radial-gradient(circle at 50% 10%, transparent 0%, rgba(0,0,0,.40) 60%, rgba(0,0,0,.78) 100%);
+      opacity:.72;
+    }
+
+    main{ position:relative; z-index:1; }
+    .wrap{ width:min(var(--max), calc(100% - 44px)); margin-inline:auto; }
+    @media (max-width:520px){ .wrap{ width:calc(100% - 28px);} }
+
+    /* Header */
+    .header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(0,0,0,.58);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .header__inner{
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding: 12px 0;
+    }
+    .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+    .brand__logo{
+      width:44px; height:44px; border-radius:14px;
+      border:1px solid var(--line);
+      background:#0b0b0b;
+      padding:6px;
+    }
+    .brand__name{
+      display:block; font-weight:900; letter-spacing:.06em;
+      text-transform:uppercase; font-size:14px;
+    }
+    .brand__sub{ display:block; color:var(--muted); font-size:12px; margin-top:2px; }
+
+    .nav{ display:flex; gap:10px; align-items:center; }
+    .nav a{
+      text-decoration:none;
+      color:rgba(255,255,255,.72);
+      font-weight:800;
+      letter-spacing:.10em;
+      text-transform:uppercase;
+      font-size:11px;
+      padding:10px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      transition: transform .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease);
+    }
+    .nav a:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.18); }
+    @media (max-width:860px){ .nav{ display:none; } }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      text-decoration:none;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 12px;
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(10px);
+      transition: transform .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease), filter .18s var(--ease);
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.18); }
+    .btn:active{ transform: translateY(0) scale(.99); }
+    .btn--gold{
+      color:#0b0b0b;
+      background: linear-gradient(180deg, rgba(245,215,110,.96), rgba(212,175,55,.88));
+      border-color: rgba(212,175,55,.58);
+      box-shadow: 0 18px 44px rgba(212,175,55,.14);
+    }
+    .dot{ width: 9px; height:9px; border-radius:50%; background:#0b0b0b; opacity:.72; }
+
+    /* Panels / Cards */
+    .panel{
+      border-radius: var(--r2);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+    }
+    .panel__head{
+      padding: 18px 20px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.02);
+    }
+    .h2{ margin:0; font-size: clamp(18px, 2.2vw, 28px); }
+    .p{ margin: 8px 0 0; color: var(--muted); line-height: 1.55; }
+
+    .card{
+      border-radius: var(--r);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+      padding: 16px;
+      box-shadow: var(--shadow2);
+    }
+
+    /* Hero */
+    .hero{ padding: 30px 0 14px; }
+    .hero__grid{ display:grid; grid-template-columns: 1.05fr .95fr; }
+    .hero__left{
+      padding: 26px;
+      background:
+        radial-gradient(720px 260px at 12% 0%, rgba(212,175,55,.10), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      position:relative; z-index:2;
+    }
+    .hero__right{ position:relative; min-height: 380px; background:#070707; }
+    .hero__img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position: 50% 18%; filter: contrast(1.03) saturate(1.02); transform: scale(1.02); }
+    .hero__overlay{
+      position:absolute; inset:0; pointer-events:none;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.74) 0%, rgba(0,0,0,.22) 46%, rgba(0,0,0,.34) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.24) 42%, rgba(0,0,0,.70) 100%),
+        radial-gradient(620px 420px at 92% 12%, rgba(212,175,55,.16) 0%, transparent 62%);
+    }
+    .brandlock{ display:flex; align-items:center; gap:14px; margin-bottom: 12px; }
+    .brandlock__logo{
+      width:56px; height:56px; border-radius:16px;
+      border:1px solid var(--line); background:#0b0b0b; padding:8px;
+    }
+    .brandlock__name{ font-weight:950; letter-spacing:.06em; text-transform:uppercase; font-size:14px; }
+    .brandlock__sub{ color:rgba(255,255,255,.72); font-size:12px; margin-top:2px; }
+    .brandlock__ttp{ color:rgba(255,255,255,.58); font-size:12px; margin-top:2px; }
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      letter-spacing:.18em; text-transform:uppercase; font-size:12px;
+      color: rgba(255,255,255,.80);
+      margin-top:6px;
+    }
+    .kdot{ width:8px; height:8px; border-radius:999px; background: var(--gold); }
+    .h1{ font-size: clamp(34px, 4.5vw, 58px); line-height: 1.03; margin: 14px 0 10px; }
+    .sub{ color: var(--muted); line-height: 1.6; margin: 0 0 12px; max-width: 62ch; }
+
+    .chips{ display:flex; flex-wrap:wrap; gap:10px; margin: 14px 0 10px; }
+    .chip{
+      padding: 10px 12px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.92);
+      font-weight: 900; letter-spacing: .12em; text-transform: uppercase; font-size: 12px;
+      cursor:pointer;
+      transition: transform .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease);
+    }
+    .chip:hover{ transform: translateY(-1px); }
+    .chip.is-active{ border-color: rgba(212,175,55,.42); background: rgba(212,175,55,.12); }
+
+    .lanehelp{ color: rgba(255,255,255,.66); font-size: 13px; line-height: 1.5; }
+
+    /* Hero: max 2 CTAs */
+    .hero__cta{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px; }
+
+    @media (max-width: 900px){
+      .hero__grid{ grid-template-columns: 1fr; }
+      .hero__right{ min-height: 320px; }
+    }
+
+    /* Reveal */
+    .reveal{ opacity:0; transform: translateY(10px); transition: opacity .55s var(--ease2), transform .55s var(--ease2); }
+    .reveal.is-visible{ opacity:1; transform:none; }
+
+    /* Sections */
+    .section{ padding: 14px 0 34px; }
+
+    /* Swipe strip */
+    .swipe{
+      display:flex; gap:12px; padding: 18px 20px 20px;
+      overflow:auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling:touch;
+    }
+    .shot{
+      min-width: min(720px, 90vw);
+      scroll-snap-align: start;
+      border-radius: var(--r2);
+      border: 1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      background:#060606;
+      box-shadow: 0 16px 40px rgba(0,0,0,.50);
+      position:relative;
+    }
+    .shot__img{ width:100%; height: 290px; object-fit:cover; display:block; }
+    .shot__overlay{
+      position:absolute; inset:0; pointer-events:none;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.06) 0%, rgba(0,0,0,.56) 78%, rgba(0,0,0,.86) 100%),
+        radial-gradient(520px 220px at 14% 0%, rgba(212,175,55,.18), transparent 62%);
+    }
+    .shot__cap{
+      position:absolute; left:16px; right:16px; bottom:14px;
+      display:flex; justify-content:space-between; align-items:flex-end; gap:12px;
+    }
+    .cap__title{ margin:0; font-weight:900; letter-spacing:.08em; text-transform:uppercase; font-size:12px; color: rgba(255,255,255,.92); }
+    .cap__line{ margin:6px 0 0; color: rgba(255,255,255,.72); line-height:1.45; max-width:44ch; font-size:13px; }
+
+    /* Flow grid */
+    .grid3{
+      display:grid; grid-template-columns: 1fr 1fr 1fr;
+      gap:14px; padding: 18px 20px 20px;
+    }
+    .flowcard{ box-shadow:none; background: rgba(0,0,0,.22); }
+    .flowtop{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
+    .num{
+      width:44px; height:34px; border-radius:12px;
+      border:1px solid rgba(212,175,55,.34);
+      background: rgba(212,175,55,.10);
+      display:grid; place-items:center;
+      font-weight:900; letter-spacing:.10em;
+    }
+    .tag{ font-size:11px; letter-spacing:.12em; text-transform:uppercase; color: rgba(255,255,255,.70); font-weight:900; text-align:right; }
+    .cardtitle{ margin:12px 0 6px; font-weight:900; font-size:16px; }
+    .cardline{ margin:0; color: var(--muted); line-height:1.55; font-size:14px; max-width:42ch; }
+    @media (max-width: 900px){ .grid3{ grid-template-columns: 1fr; } }
+
+    /* CHEF block */
+    .chefgrid{
+      display:grid; grid-template-columns: 1.1fr .9fr;
+      gap:14px; padding: 18px 20px 20px;
+    }
+    .chefbox{ box-shadow:none; }
+    .chefword{
+      font-weight:900; letter-spacing:.12em; text-transform:uppercase;
+      font-size:12px; color: rgba(255,255,255,.80);
+    }
+    .chefletters{ margin-top:12px; line-height:1.7; font-size:16px; }
+    .leadletter{ display:inline-block; width:18px; color: var(--gold2); font-weight:900; }
+    .chefnote{ margin:12px 0 0; color: var(--muted2); line-height:1.5; font-size:13px; }
+    @media (max-width: 900px){ .chefgrid{ grid-template-columns: 1fr; } }
+
+    /* Start form */
+    .cols{
+      display:grid; grid-template-columns: repeat(12, 1fr);
+      gap:14px; padding: 18px 20px 20px;
+    }
+    .span7{ grid-column: span 7; }
+    .span5{ grid-column: span 5; }
+    .formgrid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    .full{ grid-column: 1 / -1; }
+    .label{
+      display:block; font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+      color: rgba(255,255,255,.68); margin-bottom:6px; font-weight:900;
+    }
+    .input{
+      width:100%;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--ink);
+      padding: 12px 12px;
+      outline:none;
+      font-size:14px;
+    }
+    .input::placeholder{ color: rgba(255,255,255,.45); }
+    textarea.input{ min-height: 92px; resize: vertical; }
+    .start__actions{ display:grid; grid-template-columns: 1.1fr .9fr; gap:12px; margin-top:12px; }
+
+    /* Icon buttons */
+    .iconbtn{
+      width:44px; height:44px; display:grid; place-items:center;
+      border-radius:999px; border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      transition: transform .18s var(--ease), background .18s var(--ease), border-color .18s var(--ease);
+      text-decoration:none;
+    }
+    .iconbtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); }
+    .iconbtn svg{ width:20px; height:20px; fill:none; stroke: currentColor; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; opacity:.92; }
+
+    @media (max-width: 900px){
+      .cols{ grid-template-columns: 1fr; }
+      .span7,.span5{ grid-column:auto; }
+      .formgrid{ grid-template-columns: 1fr; }
+      .start__actions{ grid-template-columns: 1fr; }
+    }
+
+    /* Sticky mobile bar */
+    .sticky{
+      position:fixed; left:0; right:0; bottom:0; z-index:60;
+      background: rgba(0,0,0,.66);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--line);
+      padding: 10px 0;
+      display:none;
+    }
+    .sticky__inner{ display:grid; grid-template-columns: 1fr 44px; gap:10px; }
+    @media (max-width: 900px){ .sticky{ display:block; } }
+
+    /* Footer */
+    .footer{
+      padding: 28px 0 98px;
+      color: rgba(255,255,255,.72);
+      border-top: 1px solid rgba(255,255,255,.10);
+      margin-top: 24px;
+    }
+    .footer__inner{
+      display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+    .credit{
+      font-size:12px; letter-spacing:.10em; text-transform:uppercase;
+      color: rgba(255,255,255,.62);
+    }
+    .credit a{ text-decoration:none; }
+
+    /* Toast (no “copy” UI) */
+    .toast{
+      position:fixed; left:50%; transform: translateX(-50%);
+      bottom: 88px; z-index: 90; pointer-events:none;
+      opacity:0;
+      transition: opacity .18s var(--ease), transform .18s var(--ease);
+    }
+    .toast.is-showing{ opacity:1; transform: translateX(-50%) translateY(-4px); }
+    .toast__inner{
+      display:flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,.34);
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.44);
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: rgba(255,255,255,.92);
+    }
+    .toast__dot{ width:8px; height:8px; border-radius:999px; background: var(--gold2); }
+
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      *{ transition:none !important; animation:none !important; }
+      .reveal{ opacity:1 !important; transform:none !important; }
+    }
+  </style>
 </head>
 
 <body>
-	<div class="fx fx-glow" aria-hidden="true"></div>
-	<div class="fx fx-grid" aria-hidden="true"></div>
-	<div class="fx fx-grain" aria-hidden="true"></div>
+  <div class="fx fx-grain" aria-hidden="true"></div>
+  <div class="fx fx-vignette" aria-hidden="true"></div>
 
-	<header class="header" role="banner">
-		<div class="wrap header__inner">
-			<a class="brand" href="#top" aria-label="TTP Kitchen Home">
-				<span class="brand__logo">
-					<img src="assets/logo-ttp.png" alt="TTP Kitchen logo">
-				</span>
-				<span class="brand__text">
-					<span class="brand__name">TTP Kitchen</span>
-					<span class="brand__sub">Chef Chris Porter • DFW</span>
-				</span>
-			</a>
+  <header class="header" role="banner">
+    <div class="wrap header__inner">
+      <a class="brand" href="#top" aria-label="TTP Kitchen Home">
+        <img class="brand__logo" src="logo-ttp.png" alt="TTP Kitchen logo">
+        <span>
+          <span class="brand__name">TTP Kitchen</span>
+          <span class="brand__sub">Chef CP</span>
+        </span>
+      </a>
 
-			<nav class="nav" aria-label="Primary">
-				<a class="nav__link" href="#services">Services</a>
-				<a class="nav__link" href="#why">Why</a>
-				<a class="nav__link" href="#start">Start</a>
-			</nav>
+      <nav class="nav" aria-label="Primary">
+        <a href="#flow">The Flow</a>
+        <a href="#chef">CHEF</a>
+        <a href="#start">Start</a>
+      </nav>
+    </div>
+  </header>
 
-			<div class="header__actions">
-				<a id="headerSmsLink" class="btn btn--gold" href="#start">
-					<span class="btn__dot" aria-hidden="true"></span>
-					TEXT TO LOCK IN
-				</a>
-			</div>
-		</div>
-	</header>
+  <main id="top" class="wrap" role="main">
 
-	<div class="actionbar" role="region" aria-label="Quick actions">
-		<div class="wrap actionbar__inner">
-			<a
-				id="barSmsLink"
-				class="btn btn--gold btn--block"
-				href="sms:+14698857589?&body=Hey%20Chef%20Chris%20-%20I%27m%20ready%20for%20that%20TTP%20experience.%0A%0AInterested%20in%3A%20Private%20Chef%0ADate%3A%20_____%0AGuests%3A%20_____%0AArea%3A%20_____">
-				<span class="btn__dot" aria-hidden="true"></span>
-				TEXT TO LOCK IN
-			</a>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="panel reveal">
+        <div class="hero__grid">
+          <div class="hero__left">
+            <div class="brandlock">
+              <img class="brandlock__logo" src="logo-ttp.png" alt="TTP Kitchen logo">
+              <div>
+                <div class="brandlock__name">TTP Kitchen</div>
+                <div class="brandlock__sub">Chef CP</div>
+                <div class="brandlock__ttp">TTP (Trust The Process).</div>
+              </div>
+            </div>
 
-			<a
-				id="barEmailLink"
-				class="btn btn--ghost btn--block"
-				href="mailto:info@ttpkitchen.com?subject=TTP%20Kitchen%20Inquiry&body=Hey%20Chef%20Chris%2C%0A%0AI%27m%20interested%20in%3A%20Private%20Chef%0ADate%3A%20_____%0AGuests%3A%20_____%0ALocation%20area%3A%20_____%0A%0AThanks!">
-				EMAIL
-			</a>
-		</div>
-	</div>
+            <div class="kicker"><span class="kdot" aria-hidden="true"></span>IT’S NOT FINE DINING — IT’S A LIFESTYLE</div>
 
-	<main id="top" class="wrap" role="main">
-		<!-- HERO -->
-		<section class="hero">
-			<div class="hero__media" aria-hidden="true">
-				<img id="heroParallaxImg" src="assets/chef-portrait.jpg" alt="Chef CP with plated dishes">
-				<div class="hero__shade"></div>
-			</div>
+            <h1 class="h1">Where Fine Dining Becomes A Lifestyle.</h1>
 
-			<div class="hero__grid">
-				<div class="hero__left reveal">
-					<div class="hero__logo-block">
-						<img src="assets/logo-ttp.png" alt="TTP Kitchen logo" class="hero__logo">
-						<div class="hero__tagline-top">Where Fine Dining Becomes a Lifestyle.</div>
-					</div>
+            <p class="sub">
+              If you care about timing, energy, and how it all lands — you’re in the right place.
+            </p>
 
-					<div class="kicker">
-						<span class="kicker__dot" aria-hidden="true"></span>
-						IT’S NOT FINE DINING — IT’S A LIFESTYLE
-					</div>
+            <div class="chips" role="group" aria-label="Choose a lane">
+              <button class="chip is-active" type="button" data-lane="Private Chef" aria-pressed="true">PRIVATE CHEF</button>
+              <button class="chip" type="button" data-lane="Catering" aria-pressed="false">CATERING</button>
+              <button class="chip" type="button" data-lane="Pre-Orders" aria-pressed="false">PRE-ORDERS</button>
+            </div>
 
-					<h1 class="h1">Southern Soul. Classic Comfort. Fine Dining Finesse.</h1>
+            <div id="laneHelp" class="lanehelp">For nights that deserve a memory.</div>
 
-					<p class="lead">
-						Private chef and small‑event catering in DFW. Plates that look like art and feel like home — built for the nights you want people to remember.
-					</p>
+            <!-- Hero: max 2 CTAs -->
+            <div class="hero__cta">
+              <a id="heroSms" class="btn btn--gold" href="#"><span class="dot" aria-hidden="true"></span>TEXT TO LOCK IN</a>
+              <a id="heroEmail" class="btn" href="#">EMAIL</a>
+            </div>
+          </div>
 
-					<div class="chips" role="group" aria-label="Select a service type">
-						<button class="chip is-active" type="button" data-service="Private Chef" data-key="private" aria-pressed="true">PRIVATE CHEF</button>
-						<button class="chip" type="button" data-service="Catering" data-key="catering" aria-pressed="false">CATERING</button>
-						<button class="chip" type="button" data-service="Pre-Orders" data-key="preorder" aria-pressed="false">PRE-ORDERS</button>
-					</div>
+          <div class="hero__right" aria-hidden="true">
+            <img id="heroImg" class="hero__img" src="chef-portrait.jpg" alt="">
+            <div class="hero__overlay"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-					<div class="hero__cta">
-						<a
-							id="heroSmsLink"
-							class="btn btn--gold"
-							href="sms:+14698857589?&body=Hey%20Chef%20Chris%20-%20I%27m%20ready%20for%20that%20TTP%20experience.%0A%0AInterested%20in%3A%20Private%20Chef%0ADate%3A%20_____%0AGuests%3A%20_____%0AArea%3A%20_____">
-							<span class="btn__dot" aria-hidden="true"></span>
-							TEXT TO LOCK IN
-						</a>
+    <!-- KITCHEN STRIP -->
+    <section class="section">
+      <div class="panel reveal">
+        <div class="panel__head">
+          <h2 class="h2">In The Kitchen</h2>
+          <p class="p">Craft you can see. Timing you can feel.</p>
+        </div>
 
-						<a
-							id="heroEmailLink"
-							class="btn btn--ghost"
-							href="mailto:info@ttpkitchen.com?subject=TTP%20Kitchen%20Inquiry&body=Hey%20Chef%20Chris%2C%0A%0AI%27m%20interested%20in%3A%20Private%20Chef%0ADate%3A%20_____%0AGuests%3A%20_____%0ALocation%20area%3A%20_____%0A%0AThanks!">
-							EMAIL
-						</a>
-					</div>
+        <div class="swipe" aria-label="Swipe gallery">
+          <article class="shot">
+            <img class="shot__img" src="chefplating.JPG" alt="Chef CP plating food">
+            <div class="shot__overlay"></div>
+            <div class="shot__cap">
+              <div>
+                <p class="cap__title">THE MOMENT</p>
+                <p class="cap__line">Not just a meal. A moment people talk about after.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-					<div class="microline">
-						<span>DFW • PRIVATE CHEF + CATERING</span>
-						<span class="microline__sep" aria-hidden="true"></span>
-						<a
-							id="microSmsLink"
-							class="microline__tap"
-							href="sms:+14698857589?&body=Hey%20Chef%20Chris%20-%20I%27m%20ready%20for%20that%20TTP%20experience.%0A%0AInterested%20in%3A%20Private%20Chef%0ADate%3A%20_____%0AGuests%3A%20_____%0AArea%3A%20_____">
-							TAP TO START
-						</a>
-					</div>
-				</div>
+    <!-- FLOW -->
+    <section id="flow" class="section">
+      <div class="panel reveal">
+        <div class="panel__head">
+          <h2 class="h2">The Flow</h2>
+          <p class="p">Send the basics. CP sets the tone.</p>
+        </div>
 
-				<aside class="proof reveal reveal--right" aria-label="What to expect">
-					<div class="proof__top">
-						<span class="proof__label">WHAT YOU WILL FEEL</span>
-						<span class="proof__tag">STANDARDS ONLY</span>
-					</div>
+        <div class="grid3">
+          <div class="card flowcard">
+            <div class="flowtop">
+              <div class="num">01</div>
+              <div class="tag">KEEP IT CLEAN</div>
+            </div>
+            <div class="cardtitle">Pick A Lane</div>
+            <p class="cardline">Private chef. Catering. Drops. No extra explaining.</p>
+          </div>
 
-					<div class="proof__bullets">
-						<div class="bullet"><span class="bullet__mark"></span><span>LOVE YOU CAN TASTE</span></div>
-						<div class="bullet"><span class="bullet__mark"></span><span>QUALITY YOU CAN TRUST</span></div>
-						<div class="bullet"><span class="bullet__mark"></span><span>PRESENCE YOU CAN FEEL</span></div>
-						<div class="bullet"><span class="bullet__mark"></span><span>BUILT FOR LEGACY</span></div>
-					</div>
+          <div class="card flowcard">
+            <div class="flowtop">
+              <div class="num">02</div>
+              <div class="tag">SEND BASICS</div>
+            </div>
+            <div class="cardtitle">Drop The Details</div>
+            <p class="cardline">Day, headcount, area. That’s enough to start.</p>
+          </div>
 
-					<div class="proof__quote">“GOOD FOOD BRINGS UNITY.”</div>
+          <div class="card flowcard">
+            <div class="flowtop">
+              <div class="num">03</div>
+              <div class="tag">LET IT LAND</div>
+            </div>
+            <div class="cardtitle">Feel The Moment</div>
+            <p class="cardline">Timing handled. Hospitality on time. Food that means something.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-					<div class="proof__actions">
-						<a
-							class="btn btn--soft"
-							href="sms:+14698857589?&body=Hey%20Chef%20Chris%20-%20Quick%20question%20about%20_____">
-							QUICK TEXT
-						</a>
-						<a
-							id="availabilityTextLink"
-							class="btn btn--soft"
-							href="sms:+14698857589?&body=Hey%20Chef%20Chris%20-%20I%20want%20to%20book.%0AInterested%20in%3A%20Private%20Chef%0ADate%3A%20_____%0AGuests%3A%20_____%0AArea%3A%20_____">
-							CHECK AVAILABILITY
-						</a>
-					</div>
-				</aside>
-			</div>
-		</section>
+    <!-- CHEF -->
+    <section id="chef" class="section">
+      <div class="panel reveal">
+        <div class="panel__head">
+          <h2 class="h2">CHEF</h2>
+          <p class="p">The process isn’t random. It’s built.</p>
+        </div>
 
-		<!-- SERVICES -->
-		<section id="services" class="screen">
-			<div class="screen__head reveal">
-				<h2 class="h2">TTP Kitchen Experiences</h2>
-				<p class="sub">
-					Choose your lane and we’ll handle the rest.
-				</p>
-			</div>
+        <div class="chefgrid">
+          <div class="card chefbox">
+            <div class="chefword">C H E F</div>
+            <div class="chefletters">
+              <div><span class="leadletter">C</span>raft</div>
+              <div><span class="leadletter">H</span>ospitality</div>
+              <div><span class="leadletter">E</span>levation</div>
+              <div><span class="leadletter">F</span>lavor</div>
+            </div>
+            <p class="chefnote">Those first letters pop so the word <b>CHEF</b> hits immediately.</p>
+          </div>
 
-			<div class="tabs reveal" role="tablist" aria-label="Service filters">
-				<button class="tab is-active" data-filter="all" role="tab" aria-selected="true">ALL</button>
-				<button class="tab" data-filter="private" role="tab" aria-selected="false">PRIVATE CHEF</button>
-				<button class="tab" data-filter="catering" role="tab" aria-selected="false">CATERING</button>
-				<button class="tab" data-filter="preorder" role="tab" aria-selected="false">PRE-ORDERS</button>
-			</div>
+          <div class="card chefbox">
+            <div class="chefword">WHAT PEOPLE FEEL</div>
+            <p class="p" style="margin-top:12px;">
+              Calm in the room. Clean timing. Real hospitality. Plates that look like art and feel like home.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-			<div class="swipe reveal" aria-live="polite">
-				<article class="tile" data-type="private">
-					<div class="tile__title">Private Chef</div>
-					<div class="tile__text">
-						Intimate plated dinners in your space (2–10 guests). Southern soul with quiet luxury energy.
-					</div>
-					<a
-						class="btn btn--gold btn--wide"
-						href="sms:+14698857589?&body=Hey%20Chef%20Chris%20-%20I%27m%20interested%20in%20Private%20Chef.%0ADate%3A%20_____%0AGuests%3A%20_____%0AArea%3A%20_____">
-						<span class="btn__dot" aria-hidden="true"></span>
-						CLAIM YOUR DATE
-					</a>
-				</article>
+    <!-- START -->
+    <section id="start" class="section">
+      <div class="panel reveal">
+        <div class="panel__head">
+          <h2 class="h2">Start</h2>
+          <p class="p">Choose your lane. Drop what you know. CP takes it from there.</p>
+        </div>
 
-				<article class="tile" data-type="catering">
-					<div class="tile__title">Small Event Catering</div>
-					<div class="tile__text">
-						7–25 guests. Clean timing, full flavor, no chaos — for gatherings that actually matter.
-					</div>
-					<a
-						class="btn btn--gold btn--wide"
-						href="sms:+14698857589?&body=Hey%20Chef%20Chris%20-%20I%27m%20interested%20in%20Catering.%0ADate%3A%20_____%0AGuests%3A%20_____%0AArea%3A%20_____">
-						<span class="btn__dot" aria-hidden="true"></span>
-						BUILD YOUR MENU
-					</a>
-				</article>
+        <div class="cols">
+          <div class="card span7" style="box-shadow:none;">
+            <div class="formgrid">
+              <div>
+                <label class="label" for="lane">Lane</label>
+                <select id="lane" class="input">
+                  <option value="Private Chef">Private Chef</option>
+                  <option value="Catering">Catering</option>
+                  <option value="Pre-Orders">Pre-Orders</option>
+                </select>
+              </div>
 
-				<article class="tile" data-type="preorder">
-					<div class="tile__title">Pre‑Order Plates & Drops</div>
-					<div class="tile__text">
-						Limited plates on specific days. You prepay, we prepare, you pick up or get delivery where available.
-					</div>
-					<a
-						class="btn btn--gold btn--wide"
-						href="sms:+14698857589?&body=Hey%20Chef%20Chris%20-%20Please%20add%20me%20to%20TTP%20Pre-Order%20updates.%20Name%3A%20_____">
-						<span class="btn__dot" aria-hidden="true"></span>
-						GET UPDATES
-					</a>
-				</article>
-			</div>
+              <div id="fieldNameWrap" hidden>
+                <label class="label" for="name">Name</label>
+                <input id="name" class="input" type="text" placeholder="Your name">
+              </div>
 
-			<div class="strip reveal" aria-label="How it works">
-				<div class="strip__item">
-					<span class="strip__num">1</span> SEND DATE + GUESTS + AREA
-				</div>
-				<div class="strip__item">
-					<span class="strip__num">2</span> CONFIRM MENU + DETAILS
-				</div>
-				<div class="strip__item">
-					<span class="strip__num">3</span> LOCK IN THE EXPERIENCE
-				</div>
-			</div>
-		</section>
+              <div id="fieldDateWrap">
+                <label class="label" for="date">Date</label>
+                <input id="date" class="input" type="text" placeholder="What day are we talking?">
+              </div>
 
-		<!-- WHY -->
-		<section id="why" class="screen">
-			<div class="screen__head reveal">
-				<h2 class="h2">Why TTP Kitchen</h2>
-				<p class="sub">
-					Cooking started as survival. It became therapy. Now it’s legacy.
-				</p>
-			</div>
+              <div id="fieldGuestsWrap">
+                <label class="label" for="guests">Guests</label>
+                <input id="guests" class="input" type="text" placeholder="How many people?">
+              </div>
 
-			<div class="accordion reveal">
-				<details class="acc" open>
-					<summary class="acc__sum">
-						<span>The Story</span>
-						<span class="acc__icon" aria-hidden="true"></span>
-					</summary>
-					<div class="acc__body">
-						<p>
-							TTP Kitchen is Chef Chris Porter turning a small‑kitchen hustle into plates that feel like memory work.
-							For him, good food erases lines — race, politics, money — and brings people back to the same table.
-						</p>
-					</div>
-				</details>
+              <div id="fieldAreaWrap" class="full">
+                <label class="label" for="area">Area</label>
+                <input id="area" class="input" type="text" placeholder="What part of town?">
+              </div>
 
-				<details class="acc">
-					<summary class="acc__sum">
-						<span>The Standards</span>
-						<span class="acc__icon" aria-hidden="true"></span>
-					</summary>
-					<div class="acc__body">
-						<div class="stamps">
-							<div class="stamp"><b>Quality Over Hype</b><span>Every dish has standards, not shortcuts.</span></div>
-							<div class="stamp"><b>Consistency Is Currency</b><span>Show up right, every time.</span></div>
-							<div class="stamp"><b>People First</b><span>Clients, crew, and community all matter.</span></div>
-							<div class="stamp"><b>Legacy Work</b><span>Built to last longer than the trend.</span></div>
-						</div>
-					</div>
-				</details>
-			</div>
+              <div id="fieldNotesWrap" class="full">
+                <label class="label" for="notes">Notes (Optional)</label>
+                <textarea id="notes" class="input" placeholder="Anything CP should know?"></textarea>
+              </div>
 
-			<!-- FEATURE PHOTO (second image) -->
-			<div class="feature-photo reveal" aria-hidden="true">
-				<img src="assets/plated-dishes.jpg" alt="Signature TTP Kitchen plated dishes">
-				<div class="feature-photo__caption">
-					Real plates. Real timing. Real presence.
-				</div>
-			</div>
+              <div id="fieldUpdatesWrap" class="full" hidden>
+                <label class="label" for="updates">Notes (Optional)</label>
+                <textarea id="updates" class="input" placeholder="Pickup area, dietary notes, or what you want on the list."></textarea>
+              </div>
+            </div>
 
-			<!-- CHEF Values block -->
-			<section class="chef-block reveal" aria-label="CHEF values">
-				<h3 class="chef-block__title">What CHEF Means Here</h3>
-				<div class="chef-block__grid">
-					<div class="chef-item">
-						<div class="chef-item__letter">C</div>
-						<div class="chef-item__body">
-							<div class="chef-item__label">Craft</div>
-							<p>Technique, timing, and details dialed in on every plate.</p>
-						</div>
-					</div>
-					<div class="chef-item">
-						<div class="chef-item__letter">H</div>
-						<div class="chef-item__body">
-							<div class="chef-item__label">Hospitality</div>
-							<p>How people feel in the room matters as much as the food.</p>
-						</div>
-					</div>
-					<div class="chef-item">
-						<div class="chef-item__letter">E</div>
-						<div class="chef-item__body">
-							<div class="chef-item__label">Elevation</div>
-							<p>Comfort classics taken up a level without losing the soul.</p>
-						</div>
-					</div>
-					<div class="chef-item">
-						<div class="chef-item__letter">F</div>
-						<div class="chef-item__body">
-							<div class="chef-item__label">Flavor</div>
-							<p>Seasoning, balance, and portions that feel generous.</p>
-						</div>
-					</div>
-				</div>
-				<p class="chef-block__note">
-					When all four hit together, you don’t just get a meal — you get a moment.
-				</p>
-			</section>
-		</section>
+            <div class="start__actions">
+              <a id="startSms" class="btn btn--gold" href="#"><span class="dot" aria-hidden="true"></span>TEXT TO LOCK IN</a>
+              <a id="startEmail" class="btn" href="#">EMAIL</a>
+            </div>
+          </div>
 
-		<!-- START -->
-		<section id="start" class="screen">
-			<div class="screen__head reveal">
-				<h2 class="h2">Start Here</h2>
-				<p class="sub">One message with your date, guests, and area. I’ll handle the rest.</p>
-			</div>
+          <div class="card span5" style="box-shadow:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+              <div style="font-weight:900; letter-spacing:.08em; text-transform:uppercase; font-size:12px;">
+                Stay Connected
+              </div>
+              <a class="iconbtn" href="https://www.instagram.com/ttp_kitchen" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <!-- IG icon -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm4.25 6.2A3.8 3.8 0 1 1 8.2 12 3.81 3.81 0 0 1 12 8.2Zm5.4-1.6a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9Z"/>
+                </svg>
+              </a>
+            </div>
 
-			<div class="startgrid reveal">
-				<div class="startpanel">
-					<div class="startpanel__title">Fastest Way</div>
-					<div class="startpanel__text">
-						Text your date, guest count, and area. You’ll get a response with next steps.
-					</div>
+            <p class="p" style="margin-top:14px;">
+              Not a bunch of back and forth. Just a clean start — and a chef who knows how to run the moment.
+            </p>
 
-					<div class="startpanel__actions">
-						<a
-							id="startSmsLink"
-							class="btn btn--gold btn--wide"
-							href="sms:+14698857589?&body=Hey%20Chef%20Chris%20-%20I%27m%20ready%20to%20lock%20in.%0A%0AInterested%20in%3A%20Private%20Chef%0ADate%3A%20_____%0AGuests%3A%20_____%0AArea%3A%20_____">
-							<span class="btn__dot" aria-hidden="true"></span>
-							TEXT TO LOCK IN
-						</a>
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn" href="https://ig.me/m/ttp_kitchen" target="_blank" rel="noreferrer">DM</a>
+              <a class="btn" href="mailto:info@ttpkitchen.com">EMAIL</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-						<a
-							id="startEmailLink"
-							class="btn btn--ghost btn--wide"
-							href="mailto:info@ttpkitchen.com?subject=TTP%20Kitchen%20Inquiry&body=Hey%20Chef%20Chris%2C%0A%0AI%27m%20interested%20in%3A%20Private%20Chef%0ADate%3A%20_____%0AGuests%3A%20_____%0ALocation%20area%3A%20_____%0A%0AThanks!">
-							EMAIL REQUEST
-						</a>
-					</div>
+    <footer class="footer">
+      <div class="footer__inner">
+        <div>© <span id="year"></span> TTP Kitchen • Chef CP</div>
 
-					<div class="tinyhint">DATE + GUEST COUNT + YOUR AREA = FAST RESPONSE.</div>
-				</div>
+        <div class="credit">
+          SITE DEVELOPED BY
+          <a href="https://hustleignite.pinkswann.com/" target="_blank" rel="noopener">
+            PINK SWANN BEAUTY | HIGH CLASS HUSTLE
+          </a>
+        </div>
+      </div>
+    </footer>
 
-				<div class="followpanel">
-					<div class="followpanel__title">Follow The Flavor</div>
-					<div class="followpanel__text">Drops, plates, and behind‑the‑scenes.</div>
+  </main>
 
-					<div class="followpanel__icons">
-						<a
-							class="iconbtn"
-							href="https://www.instagram.com/ttp_kitchen"
-							target="_blank"
-							rel="noreferrer"
-							aria-label="Instagram">
-							<svg viewBox="0 0 24 24" aria-hidden="true">
-								<path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5Zm4.25 4.2A3.8 3.8 0 1 1 8.2 12 3.81 3.81 0 0 1 12 8.2Zm0 2A1.8 1.8 0 1 0 13.8 12 1.81 1.81 0 0 0 12 10.2ZM17.4 6.6a.9.9 0 1 1-.9.9.9.9 0 0 1 .9-.9Z" />
-							</svg>
-						</a>
+  <!-- Sticky mobile bar -->
+  <div class="sticky" role="region" aria-label="Quick actions">
+    <div class="wrap sticky__inner">
+      <a id="barSms" class="btn btn--gold" href="#"><span class="dot" aria-hidden="true"></span>TEXT TO LOCK IN</a>
+      <a class="iconbtn" href="https://ig.me/m/ttp_kitchen" target="_blank" rel="noreferrer" aria-label="Instagram DM">
+        <!-- DM icon -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v8z"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
 
-						<a
-							class="iconbtn"
-							href="https://ig.me/m/ttp_kitchen"
-							target="_blank"
-							rel="noreferrer"
-							aria-label="Instagram Message">
-							<svg viewBox="0 0 24 24" aria-hidden="true">
-								<path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5Z" />
-							</svg>
-						</a>
+  <!-- Toast (no “copy” UI; just READY) -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+    <div class="toast__inner"><span class="toast__dot" aria-hidden="true"></span><span id="toastText">READY</span></div>
+  </div>
 
-						<a
-							class="iconbtn"
-							href="mailto:info@ttpkitchen.com"
-							aria-label="Email">
-							<svg viewBox="0 0 24 24" aria-hidden="true">
-								<path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z" />
-							</svg>
-						</a>
-					</div>
+  <script>
+    // ===== Config =====
+    const CONTACT = {
+      phone: "+14698857589",
+      email: "info@ttpkitchen.com"
+    };
 
-					<div class="followpanel__note">
-						EMAIL:
-						<a class="softlink" href="mailto:info@ttpkitchen.com">INFO@TTPKITCHEN.COM</a>
-					</div>
-				</div>
-			</div>
-		</section>
+    const LANE_HELP = {
+      "Private Chef": "For nights that deserve a memory.",
+      "Catering": "For gatherings that need to feel handled.",
+      "Pre-Orders": "For when you want it on your schedule."
+    };
 
-		<footer class="footer">
-			<div class="footer__left">
-				© <span id="year"></span> TTP Kitchen • Chef Chris Porter
-			</div>
+    // ===== Utils =====
+    const enc = (v) => encodeURIComponent(v);
+    const trim = (v) => (v || "").trim();
 
-			<div class="footer__right">
-				<a
-					class="iconbtn"
-					href="https://www.instagram.com/ttp_kitchen"
-					target="_blank"
-					rel="noreferrer"
-					aria-label="Instagram">
-					<svg viewBox="0 0 24 24" aria-hidden="true">
-						<path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5Z" />
-					</svg>
-				</a>
-				<a
-					class="iconbtn"
-					href="sms:+14698857589?&body=Hey%20Chef%20Chris%20-%20I%27m%20ready%20for%20that%20TTP%20experience."
-					aria-label="Text">
-					<svg viewBox="0 0 24 24" aria-hidden="true">
-						<path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z" />
-					</svg>
-				</a>
-				<a
-					class="iconbtn"
-					href="mailto:info@ttpkitchen.com"
-					aria-label="Email">
-					<svg viewBox="0 0 24 24" aria-hidden="true">
-						<path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z" />
-					</svg>
-				</a>
-			</div>
-		</footer>
-	</main>
+    function addLine(lines, label, value) {
+      const v = trim(value);
+      if (v) lines.push(label + ": " + v);
+    }
 
-	<div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
-		<div class="toast__inner"><span id="toastText" class="toast__text">DONE</span></div>
-	</div>
+    function buildSmsBody(data) {
+      const lines = [];
+      if (data.lane === "Pre-Orders") {
+        lines.push("Hey Chef CP — put me on the plate drop list.");
+        addLine(lines, "Name", data.name);
+        addLine(lines, "Notes", data.updates);
+        return lines.join("\\n");
+      }
+      lines.push("Hey Chef CP — I’m ready to lock in.");
+      lines.push("");
+      addLine(lines, "Lane", data.lane);
+      addLine(lines, "Date", data.date);
+      addLine(lines, "Guests", data.guests);
+      addLine(lines, "Area", data.area);
+      addLine(lines, "Notes", data.notes);
+      return lines.join("\\n");
+    }
 
-	<script>
-		document.getElementById("year").textContent = new Date().getFullYear();
+    function smsHref(body) {
+      return "sms:" + CONTACT.phone + "?&body=" + enc(body);
+    }
 
-		const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-		if (reduceMotion) document.documentElement.classList.add("reduce-motion");
+    function mailHref(data) {
+      const subject = enc("TTP Kitchen Inquiry");
+      const lines = [];
+      lines.push("Hey Chef CP,");
+      lines.push("");
+      addLine(lines, "Lane", data.lane);
 
-		const revealEls = document.querySelectorAll(".reveal");
-		const io = new IntersectionObserver((entries) => {
-			entries.forEach((e) => {
-				if (e.isIntersecting) {
-					e.target.classList.add("is-visible");
-					io.unobserve(e.target);
-				}
-			});
-		}, { threshold: 0.14 });
-		revealEls.forEach(el => io.observe(el));
+      if (data.lane === "Pre-Orders") {
+        addLine(lines, "Name", data.name);
+        addLine(lines, "Notes", data.updates);
+      } else {
+        addLine(lines, "Date", data.date);
+        addLine(lines, "Guests", data.guests);
+        addLine(lines, "Area", data.area);
+        addLine(lines, "Notes", data.notes);
+      }
 
-		const navLinks = document.querySelectorAll(".nav__link");
-		const sections = ["services", "why", "start"].map(id => document.getElementById(id));
-		const navIO = new IntersectionObserver((entries) => {
-			entries.forEach(entry => {
-				if (entry.isIntersecting) {
-					navLinks.forEach(a =>
-						a.classList.toggle(
-							"is-current",
-							a.getAttribute("href") === "#" + entry.target.id
-						)
-					);
-				}
-			});
-		}, { threshold: 0.38 });
-		sections.forEach(s => s && navIO.observe(s));
+      lines.push("");
+      lines.push("Thanks!");
+      return "mailto:" + CONTACT.email + "?subject=" + subject + "&body=" + enc(lines.join("\\n"));
+    }
 
-		const filterButtons = document.querySelectorAll(".tab");
-		const tiles = document.querySelectorAll(".tile[data-type]");
+    async function silentCopy(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch(e) {
+        return false;
+      }
+    }
 
-		function setActive(btn) {
-			filterButtons.forEach(b => {
-				b.classList.toggle("is-active", b === btn);
-				b.setAttribute("aria-selected", b === btn ? "true" : "false");
-			});
-		}
-		function applyFilter(key) {
-			tiles.forEach(tile => {
-				const show = key === "all" || tile.dataset.type === key;
-				tile.style.display = show ? "" : "none";
-			});
-		}
-		filterButtons.forEach(btn => {
-			btn.addEventListener("click", () => {
-				setActive(btn);
-				applyFilter(btn.dataset.filter);
-			});
-		});
+    function haptic(ms = 8) {
+      if ("vibrate" in navigator) navigator.vibrate(ms);
+    }
 
-		const phone = "+14698857589";
-		const email = "info@ttpkitchen.com";
+    // ===== Toast =====
+    const toast = document.getElementById("toast");
+    const toastText = document.getElementById("toastText");
+    let toastTimer = null;
 
-		const chips = document.querySelectorAll(".chip[data-service]");
-		const heroSmsLink = document.getElementById("heroSmsLink");
-		const heroEmailLink = document.getElementById("heroEmailLink");
-		const microSmsLink = document.getElementById("microSmsLink");
-		const availabilityTextLink = document.getElementById("availabilityTextLink");
-		const startSmsLink = document.getElementById("startSmsLink");
-		const startEmailLink = document.getElementById("startEmailLink");
-		const barSmsLink = document.getElementById("barSmsLink");
-		const barEmailLink = document.getElementById("barEmailLink");
-		const headerSmsLink = document.getElementById("headerSmsLink");
+    function showToast(msg) {
+      toastText.textContent = msg || "READY";
+      toast.classList.add("is-showing");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("is-showing"), 650);
+    }
 
-		function encodeBody(str) { return encodeURIComponent(str); }
+    // ===== Reveal =====
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduceMotion) {
+      const revealEls = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.14 });
+      revealEls.forEach(el => io.observe(el));
+    } else {
+      document.querySelectorAll(".reveal").forEach(el => el.classList.add("is-visible"));
+    }
 
-		function smsHref(service, mode) {
-			const body = (mode === "availability")
-				? `Hey Chef Chris - I want to book.\nInterested in: ${service}\nDate: _____\nGuests: _____\nArea: _____`
-				: `Hey Chef Chris - I'm ready for that TTP experience.\n\nInterested in: ${service}\nDate: _____\nGuests: _____\nArea: _____`;
-			return `sms:${phone}?&body=${encodeBody(body)}`;
-		}
+    // ===== Year =====
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-		function mailHref(service) {
-			const subject = encodeURIComponent("TTP Kitchen Inquiry");
-			const body = encodeBody(
-				`Hey Chef Chris,\n\nI'm interested in: ${service}\nDate: _____\nGuests: _____\nLocation area: _____\n\nThanks!`
-			);
-			return `mailto:${email}?subject=${subject}&body=${body}`;
-		}
+    // ===== Lane state =====
+    const chips = Array.from(document.querySelectorAll(".chip[data-lane]"));
+    const laneSelect = document.getElementById("lane");
+    const laneHelp = document.getElementById("laneHelp");
 
-		function applyService(serviceLabel) {
-			const sms = smsHref(serviceLabel, "hero");
-			const emailHref = mailHref(serviceLabel);
-			if (heroSmsLink) heroSmsLink.href = sms;
-			if (microSmsLink) microSmsLink.href = sms;
-			if (startSmsLink) startSmsLink.href = sms;
-			if (barSmsLink) barSmsLink.href = sms;
-			if (headerSmsLink) headerSmsLink.href = "#start";
-			if (heroEmailLink) heroEmailLink.href = emailHref;
-			if (startEmailLink) startEmailLink.href = emailHref;
-			if (barEmailLink) barEmailLink.href = emailHref;
-			if (availabilityTextLink) availabilityTextLink.href = smsHref(serviceLabel, "availability");
-		}
+    // Fields
+    const nameWrap = document.getElementById("fieldNameWrap");
+    const dateWrap = document.getElementById("fieldDateWrap");
+    const guestsWrap = document.getElementById("fieldGuestsWrap");
+    const areaWrap = document.getElementById("fieldAreaWrap");
+    const notesWrap = document.getElementById("fieldNotesWrap");
+    const updatesWrap = document.getElementById("fieldUpdatesWrap");
 
-		chips.forEach(btn => {
-			btn.addEventListener("click", () => {
-				chips.forEach(b => {
-					const active = (b === btn);
-					b.classList.toggle("is-active", active);
-					b.setAttribute("aria-pressed", active ? "true" : "false");
-				});
-				applyService(btn.dataset.service || "Private Chef");
-			});
-		});
+    const elName = document.getElementById("name");
+    const elDate = document.getElementById("date");
+    const elGuests = document.getElementById("guests");
+    const elArea = document.getElementById("area");
+    const elNotes = document.getElementById("notes");
+    const elUpdates = document.getElementById("updates");
 
-		applyService("Private Chef");
+    // Links
+    const heroSms = document.getElementById("heroSms");
+    const heroEmail = document.getElementById("heroEmail");
+    const startSms = document.getElementById("startSms");
+    const startEmail = document.getElementById("startEmail");
+    const barSms = document.getElementById("barSms");
 
-		const heroImg = document.getElementById("heroParallaxImg");
-		function parallax() {
-			if (!heroImg || reduceMotion) return;
-			const rect = heroImg.getBoundingClientRect();
-			const vh = window.innerHeight || 800;
-			const visible = rect.bottom > 0 && rect.top < vh;
-			if (!visible) return;
-			const progress = (rect.top / vh);
-			const translate = Math.max(-14, Math.min(14, progress * -12));
-			heroImg.style.transform = `scale(1.06) translateY(${translate}px)`;
-		}
-		window.addEventListener("scroll", () => requestAnimationFrame(parallax), { passive: true });
-		window.addEventListener("resize", () => requestAnimationFrame(parallax));
-		parallax();
-	</script>
+    function getData() {
+      return {
+        lane: laneSelect.value,
+        name: elName ? elName.value : "",
+        date: elDate ? elDate.value : "",
+        guests: elGuests ? elGuests.value : "",
+        area: elArea ? elArea.value : "",
+        notes: elNotes ? elNotes.value : "",
+        updates: elUpdates ? elUpdates.value : ""
+      };
+    }
+
+    function applyLaneUI(lane) {
+      if (laneHelp) laneHelp.textContent = LANE_HELP[lane] || "";
+
+      const isPre = lane === "Pre-Orders";
+      nameWrap.hidden = !isPre;
+      updatesWrap.hidden = !isPre;
+
+      dateWrap.hidden = isPre;
+      guestsWrap.hidden = isPre;
+      areaWrap.hidden = isPre;
+      notesWrap.hidden = isPre;
+
+      // Clear irrelevant fields (keeps SMS clean)
+      if (isPre) {
+        if (elDate) elDate.value = "";
+        if (elGuests) elGuests.value = "";
+        if (elArea) elArea.value = "";
+        if (elNotes) elNotes.value = "";
+      } else {
+        if (elName) elName.value = "";
+        if (elUpdates) elUpdates.value = "";
+      }
+    }
+
+    async function refreshLinks(andToast = false) {
+      const data = getData();
+      const body = buildSmsBody(data);
+      const sms = smsHref(body);
+      const mail = mailHref(data);
+
+      heroSms.href = sms;
+      startSms.href = sms;
+      barSms.href = sms;
+
+      heroEmail.href = mail;
+      startEmail.href = mail;
+
+      // Silent copy for “ready” feeling (no copy UI)
+      if (!reduceMotion) {
+        await silentCopy(body);
+        if (andToast) {
+          showToast("READY");
+          haptic(8);
+        }
+      }
+    }
+
+    function setActiveChip(lane) {
+      chips.forEach(btn => {
+        const active = btn.dataset.lane === lane;
+        btn.classList.toggle("is-active", active);
+        btn.setAttribute("aria-pressed", active ? "true" : "false");
+      });
+    }
+
+    chips.forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const lane = btn.dataset.lane || "Private Chef";
+        laneSelect.value = lane;
+        setActiveChip(lane);
+        applyLaneUI(lane);
+        await refreshLinks(true);
+      });
+    });
+
+    laneSelect.addEventListener("change", async () => {
+      const lane = laneSelect.value;
+      setActiveChip(lane);
+      applyLaneUI(lane);
+      await refreshLinks(true);
+    });
+
+    const fields = [elName, elDate, elGuests, elArea, elNotes, elUpdates].filter(Boolean);
+    fields.forEach(el => {
+      el.addEventListener("input", () => refreshLinks(false));
+      el.addEventListener("blur", () => refreshLinks(true));
+    });
+
+    // Subtle hero parallax
+    const heroImg = document.getElementById("heroImg");
+    function parallax() {
+      if (!heroImg || reduceMotion) return;
+      const rect = heroImg.getBoundingClientRect();
+      const vh = window.innerHeight || 800;
+      const visible = rect.bottom > 0 && rect.top < vh;
+      if (!visible) return;
+      const progress = (rect.top / vh);
+      const translate = Math.max(-10, Math.min(10, progress * -10));
+      heroImg.style.transform = "scale(1.05) translateY(" + translate + "px)";
+    }
+    window.addEventListener("scroll", () => requestAnimationFrame(parallax), { passive: true });
+    window.addEventListener("resize", () => requestAnimationFrame(parallax));
+    parallax();
+
+    // Init
+    applyLaneUI("Private Chef");
+    refreshLinks(false);
+  </script>
 </body>
 </html>
