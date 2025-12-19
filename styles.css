@@ -1,1 +1,107 @@
+.hero__logo-block {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-bottom: 10px;
+}
 
+.hero__logo {
+	width: 54px;
+	height: 54px;
+	border-radius: 18px;
+	border: 1px solid rgba(255,255,255,0.15);
+	box-shadow: 0 14px 40px rgba(0,0,0,0.55);
+	background: #1A1A1A;
+	object-fit: cover;
+}
+
+.hero__tagline-top {
+	font-size: 13px;
+	color: rgba(245,215,110,0.92);
+	text-transform: uppercase;
+	letter-spacing: 1.6px;
+	font-weight: 900;
+}
+
+/* CHEF block */
+.chef-block {
+	margin-top: 24px;
+	border-radius: 26px;
+	border: 1px solid rgba(255,255,255,0.10);
+	background: linear-gradient(180deg, rgba(26,26,26,0.78), rgba(0,0,0,0.28));
+	box-shadow: var(--shadow2);
+	padding: 18px;
+}
+
+.chef-block__title {
+	margin: 0 0 10px;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 1.4px;
+	font-weight: 950;
+	color: rgba(245,215,110,0.92);
+}
+
+.chef-block__grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+}
+
+.chef-item {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 10px;
+	align-items: flex-start;
+	padding: 10px 12px;
+	border-radius: 18px;
+	border: 1px solid rgba(255,255,255,0.10);
+	background: rgba(0,0,0,0.22);
+}
+
+.chef-item__letter {
+	width: 32px;
+	height: 32px;
+	border-radius: 999px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(245,215,110,0.92);
+	color: rgba(0,0,0,0.92);
+	font-weight: 950;
+	font-size: 16px;
+}
+
+.chef-item__body {
+	display: grid;
+	gap: 3px;
+}
+
+.chef-item__label {
+	font-weight: 900;
+	font-size: 13px;
+	letter-spacing: 0.2px;
+}
+
+.chef-item p {
+	margin: 0;
+	font-size: 13px;
+	color: rgba(255,255,255,0.70);
+}
+
+.chef-block__note {
+	margin-top: 10px;
+	font-size: 13px;
+	color: rgba(255,255,255,0.70);
+}
+
+/* Mobile tweaks */
+@media (max-width: 720px) {
+	.hero__logo-block {
+		flex-direction: row;
+		align-items: center;
+	}
+	.chef-block__grid {
+		grid-template-columns: 1fr;
+	}
+}
